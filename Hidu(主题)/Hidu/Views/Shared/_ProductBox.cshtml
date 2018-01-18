@@ -1,0 +1,78 @@
+﻿@model ProductOverviewModel
+@using Nop.Core
+@using Nop.Core.Domain.Orders
+@using Nop.Core.Domain.Tax
+@using Nop.Core.Infrastructure
+@using Nop.Web.Models.Catalog;
+@{
+    //prepare "Add to cart" AJAX link
+    string addtocartlink = "";
+    var shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart;
+    var quantity = 1;
+    float disCount = 0;
+    if (Model.ProductPrice.ForceRedirectionAfterAddingToCart)
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity, forceredirection = Model.ProductPrice.ForceRedirectionAfterAddingToCart });
+    }
+    else
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity, });
+    }
+}
+<div class="product-item" data-productid="@Model.Id">
+    <div class="picture">
+        <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Html.Raw(HttpUtility.HtmlDecode(Model.DefaultPictureModel.Title))">
+            <img alt="@Html.Raw(HttpUtility.HtmlDecode(Model.DefaultPictureModel.AlternateText))" src="@Model.DefaultPictureModel.ImageUrl" title="@Html.Raw(HttpUtility.HtmlDecode(Model.DefaultPictureModel.Title))" />
+        </a>
+    </div>
+    <div class="details">
+        <h2 class="product-title">
+            <a title="@Html.Raw(HttpUtility.HtmlDecode(Model.Name))" href="@Url.RouteUrl("Product", new { SeName = Model.SeName })">@Html.Raw(HttpUtility.HtmlDecode(Model.Name))</a>
+        </h2>
+        @if (Model.ReviewOverviewModel.AllowCustomerReviews)
+{
+    int ratingPercent = 0;
+    if (Model.ReviewOverviewModel.TotalReviews != 0)
+    {
+        ratingPercent = ((Model.ReviewOverviewModel.RatingSum * 100) / Model.ReviewOverviewModel.TotalReviews) / 5;
+    }
+    <div class="product-rating-box" title="@Html.Raw(HttpUtility.HtmlDecode(string.Format(T("Reviews.TotalReviews").Text, Model.ReviewOverviewModel.TotalReviews)))">
+        <div class="rating">
+            <div style="width: @(ratingPercent)%">
+            </div>
+        </div>
+    </div>
+}
+        <div class="add-info">
+            <div class="prices">
+                @if (!String.IsNullOrEmpty(Model.ProductPrice.OldPrice))
+                {
+                    <span class="price old-price">@Model.ProductPrice.OldPrice</span>
+                    disCount = (Convert.ToInt32(Model.ProductPrice.OldPrice.ToString().Replace("đ", "").Replace(".", "")) - Convert.ToInt32(Model.ProductPrice.Price.ToString().Replace("đ", "").Replace(".", "")));
+                    int disOldPrice = Convert.ToInt32(Model.ProductPrice.OldPrice.ToString().Replace("đ", "").Replace(".", ""));
+                    disCount = (disCount / disOldPrice) * 100;
+                }
+                <span class="price actual-price">@Html.Raw(HttpUtility.HtmlDecode(Model.ProductPrice.Price))</span>
+                @if (disCount > 0)
+                {
+                    <span class="price disCount-price">-@(Convert.ToInt32(disCount))%</span>
+                }
+            </div>
+            <div class="buttons">
+                @if (!Model.ProductPrice.DisableBuyButton)
+                {
+                    var addToCartText = T("ShoppingCart.AddToCart").Text;
+                    if (Model.ProductPrice.IsRental)
+                    {
+                        addToCartText = T("ShoppingCart.Rent").Text;
+                    }
+                    if (Model.ProductPrice.AvailableForPreOrder)
+                    {
+                        addToCartText = T("ShoppingCart.PreOrder").Text;
+                    }
+                }
+            </div>
+            @Html.Widget("productbox_add_info", Model.Id)
+        </div>
+    </div>
+</div>

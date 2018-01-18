@@ -1,0 +1,99 @@
+﻿@model HeaderLinksModel
+@using Nop.Web.Models.Common;
+@using Nop.Core
+@using Nop.Core.Infrastructure
+@using Nop.Services.Localization
+@using Nop.Web.Framework.Themes
+@{
+    //logo path
+    var currentThemeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+    var logoPath = "~/Themes/" + currentThemeName + "/Content/images/logo.png";
+
+    //store name
+    var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+}
+<div class="clear">
+</div>
+<div class="master-wrapper-header-top">
+    <div class="header">
+        <div class="header-top container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+                    <div class="block-container-header">
+                        <div class="block-container-header-bottom">
+                            <div class="block-btn-category">
+                                <div class="block-btn-category-right">
+                                    <button type="button" class="navbar-toggle collapsed nav-btn-category" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
+                                </div>
+                            </div>
+                            <div class="header-logo">
+                                <a href="@Url.RouteUrl("HomePage")">
+                                    <img title="@Html.Raw(HttpUtility.HtmlDecode(storeName))" alt="@Html.Raw(HttpUtility.HtmlDecode(storeName))" src="@Url.Content(logoPath)">
+                                </a>
+                            </div>
+                            <div class="block-btn-search">
+                                <div class="block-btn-search-right">
+                                    <button type="button" class="navbar-toggle collapsed nav-btn-search" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-6">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <div class="search-box">
+                            @Html.Action("SearchBox", "Catalog")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="header-links-wrapper">
+                        <div class="header-links-support-online">
+                            @Html.Action("TopicBlock", "Topic", new { systemName = "HeadSupportOnline" })
+                        </div>
+                        <div class="header-links">
+                            <ul>
+                                @Html.Widget("header_links_before")
+                                @if (Model.IsAuthenticated)
+                                {
+                                    <li><a rel="nofollow" href="@Url.RouteUrl("CustomerInfo")" class="account">@Model.CustomerEmailUsername</a></li>
+                                    <li><a rel="nofollow" href="@Url.RouteUrl("Logout")" class="ico-logout">@T("Account.Logout")</a></li>
+                                }
+                                else
+                                {
+                                    <li><a rel="nofollow" href="@Url.RouteUrl("Register")" class="ico-register">@T("Account.Register")</a></li>
+                                    <li><a rel="nofollow" href="@Url.RouteUrl("Login")" class="ico-login">@T("Account.Login")</a></li>
+                                }
+                                @if (Model.AllowPrivateMessages)
+                                {
+                                    <li>
+                                        <a rel="nofollow" href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="ico-inbox">@T("PrivateMessages.Inbox")</a>
+                                        @Model.UnreadPrivateMessages
+                                    </li>
+                                    if (!string.IsNullOrEmpty(Model.AlertMessage))
+                                    {
+                                        <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                displayPopupNotification('@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.AlertMessage))', 'success', false);
+                                            });
+                                        </script>
+                                    }
+                                }
+                                @Html.Widget("header_links_after")
+                            </ul>
+                        </div>
+                        <div class="form-email-box">
+                            <a onclick="showFormEmail()" rel="nofollow" class="regMailButton" href="javascript:void(0)">Đăng ký nhận email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function showFormEmail() {
+                $(".newsletter-box").slideToggle();
+            };
+        </script>
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿@model TopMenuModel
+@using Nop.Core.Domain
+@using Nop.Core.Infrastructure
+@using Nop.Web.Models.Catalog
+@using Nop.Web.Extensions;
+@helper RenderCategoryLine(CategorySimpleModel category, int level, bool responsiveMobileMenu)
+{
+    <li>
+        <a title="@Html.Raw(HttpUtility.HtmlDecode(category.Name))" href="@Url.RouteUrl("Category", new { SeName = category.SeName })">
+            @Html.Raw(HttpUtility.HtmlDecode(category.Name))
+            @if (category.NumberOfProducts.HasValue)
+            {<text> </text>@T("Categories.TotalProducts", category.NumberOfProducts.Value)}
+        </a>
+        @{
+            if (category.SubCategories.Count > 0)
+            {
+                <ul class="sublist">
+                    @foreach (var subCategory in category.SubCategories)
+                    {
+                        @RenderCategoryLine(subCategory, level + 1, responsiveMobileMenu)
+                    }
+                </ul>
+            }
+        }
+    </li>
+}
+@if (Model.Categories.Count > 0)
+{
+    <div class="category-box">
+        <div class="container">
+            <nav class="navigation" role="navigation">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="header-menu">
+                        <div class="listbox">
+                            <ul class="top-menu">
+                                <li><a href="/">Trang chủ</a></li>
+                                <li><a rel="nofollow" href="@Url.RouteUrl("Topic", new { SeName = Html.GetTopicSeName("gioi-thieu") })">Giới thiệu</a></li>
+                                <li><a rel="nofollow" href="/newproducts">Sản phẩm</a></li>
+                                <li><a rel="nofollow" href="@Url.RouteUrl("NewsArchive")"> Tin tức</a></li>
+                                <li><a rel="nofollow" href="@Url.RouteUrl("Topic", new { SeName = Html.GetTopicSeName("thanh-toan") })">Thanh toán</a></li>
+                                <li><a rel="nofollow" href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+}

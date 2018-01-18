@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/Shared/_ColumnsThree.cshtml";
+}
+<div class="home-page">
+    @Html.Widget("home_page_top")
+    <div class="page-body">
+        @Html.Action("HomepageProducts", "Product")
+        @Html.Action("HomePagePolls", "Poll")
+    </div>
+    @Html.Widget("home_page_bottom")
+</div>

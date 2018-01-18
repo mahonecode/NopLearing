@@ -1,0 +1,106 @@
+﻿/*=====================================================
+    
+    TABLETS LANDSCAPE & NETBOOKS
+
+=====================================================*/
+@media screen and (max-width:940px) and (min-width:768px){
+	.news-item-page .news-body .article-detail img,.full-description img{ width:100% !important;}
+}
+
+
+@media screen and (max-width:767px) {
+	.master-wrapper-header-top{ height:auto;}
+	.header-logo{ margin:0px auto; display:inline-block; width:auto; float:none;}
+	.header-logo a img{ height:49px;}
+	.block-container-header{ border-bottom:1px solid #e4e4e4; text-align:center;}
+	.block-container-header-bottom{ border-bottom:1px solid #fff;}
+	.header-links{ float:left;}
+	.header-links-support-online{ width:100%; text-align:center;}
+	.header-links ul li{ margin-left:0px; margin-right:5px;}
+	.form-email-box{ width:120px;}
+	.container-header{ float:left; width:100%; border-bottom:1px solid #e4e4e4; height:50px;}
+	#bs-example-navbar-collapse-1 { position: absolute; left: 0px; top: 0px; z-index: 999; padding: 0px; border: none; }
+	.nav-btn-category { float: left; background: url(Images/nav-btn-category.jpg) no-repeat; width: 24px; height: 18px; margin: 14px 0px; }
+	.block-btn-category { border-right: 1px solid #fff; float: left; width: 41px; height: 49px; }
+	.block-btn-category-right { border-right: 1px solid #e4e4e4; float: left; padding-right: 5px; margin-right: 5px; width: 40px; height: 49px; }
+	
+	/*nav-btn-search*/
+	.nav-btn-search { background: url("images/search.png") no-repeat; border: medium none; float: right; height: 26px; width: 26px; margin: 12px 0px; }
+	.block-btn-search { border-left: 1px solid #fff; float: right; width: 41px; height: 49px; }
+	.block-btn-search-right { border-left: 1px solid #e4e4e4; float: right; padding-left: 5px; margin-left: 5px; width: 40px; height: 49px; }
+	.search-box-block { width: 100%; text-align: center; }
+	.search-box { float: none; width: auto; margin:15px 0px; }
+	/*.header-menu*/
+	.category-box .container{ padding:0px;}
+	.category-box{ background:none; height:auto; border:none;}
+	.header-menu{width:100%; float:left; box-shadow:none; background:#fff; }
+	.navigation{ position:relative; margin-top:-60px;}
+	.header-menu .listbox ul li{ width:100%;}
+	.header-menu .listbox ul li a{ color:#12679b;}
+	.header-menu .top-menu li .sublist{ display:block; position:relative; left:auto !important; height:auto;box-shadow:none; border:none; padding:0px 0px 0px 20px; width:100%; background:none; top:auto;}
+	.header-menu .top-menu li li a{ font-weight:normal;}
+	.header-menu .top-menu li .nav-root{ display:none;}
+	.header-menu .top-menu li .hover{ background:#fff;color: #117EC2;}
+	.header-menu .listbox{ border:1px solid #e4e4e4; border-left:0px; float:left; width:100%;}
+	.home-page-product-special-price .item-box img{ height:auto; width:100%; margin:0px;}
+	.home-page-product-special-price .item-box{ height:250px;}
+	.product-grid .product-item{ height:350px;}
+	.product-grid .product-item .picture img{ width:100%;}
+	#newsletter-email{ width:auto;}
+	.home-page-box-ad .block-ad img{ max-width:280px;}
+	.product-details-page .full-description{ border:none; overflow:hidden;}
+	.opc .step{ padding:10px; border:none;}
+	.checkout-data .enter-address input[type="text"],.address-edit-page .edit-address input[type="text"],.change-password-page .form-fields input { width:230px;}
+	.checkout-data .order-review-data{ padding:10px 0px;}
+	.checkout-data .order-review-data ul{ margin:0px; width:100%;}
+	.label{ color:#333 !important;}
+	.order-summary-content .cart-collaterals{ width:auto;}
+	.email-a-friend-page .personal-message{ width:250px;}
+	.product-page-size{ width:auto;}
+	.product-item-box .add-info .actual-price{font-size:13px;}
+	.news-item-page .news-body .article-detail img,.full-description img{ width:100% !important;}
+}
+/*=====================================================
+    
+    TABLETS PORTRAIT & SMARTPHONES LANDSCAPE
+
+=====================================================*/
+@media screen and (max-width:768px) and (min-width:481px){
+	/* CUSTOMER ACCOUNT PAGES */
+    .account-signature-text{width:100%;}
+    .customer-info-page textarea{width:auto;}
+    /* COMPARE PRODUCTS */
+    .compare-products-table td img{max-width:100%;}
+    /* EMAIL A FRIEND */
+    .email-a-friend-page .page-body{padding:0;}
+    .email-a-friend-page .inputs-left,.email-a-friend-page .inputs-right{width:50%;}
+    .email-a-friend-page .inputs{width:85%;}
+    .email-a-friend-page .friend-email,.email-a-friend-page .your-email,.email-a-friend-page .personal-message{max-width:95%;}
+    .email-a-friend-page .personal-message{width:280px;}
+    /* ORDER SUMMARY,SHOPPING CART,WISHLIST */
+    .order-summary-content .cart thead,.wishlist-content .cart thead{margin-bottom:10px;}
+    .order-summary-content .cart td,.wishlist-content .cart td{padding:5px 2px !important;}
+    .order-summary-content .cart .cart-item-row td.product,.wishlist-content .cart .cart-item-row td.product{padding:0 10px !important;}
+    .nobr{white-space:normal !important;}
+    .order-summary-content .cart-collaterals{padding:0;width:auto;zoom:1;display:table;}
+    .order-summary-content .cart-collaterals:after{content:".";display:block;clear:both;height:0;font-size:0;line-height:0;visibility:hidden;}
+    .order-summary-content .deals{margin-right:3px;width:170px;}
+    .order-summary-content .coupon-box,.order-summary-content .giftcard-box{padding:3px;}
+    .order-summary-content .shipping{margin-right:3px;width:255px;}
+    .estimate-shipping{padding:3px;}
+    .order-summary-content .totals{width:295px;padding-top:0;display:table;}
+    .order-progress{height:auto;}
+    .order-progress ul{display:inline-block;width:100%;text-align:center;}
+    .order-progress ul li{display:inline-block;float:none;margin:0;width:60px;}
+    .order-progress ul li a{display:block;padding-bottom:30px !important;background-position:50% 70% !important;}
+    /* CHECKOUT */
+    .checkout-data .section input[type="text"],.checkout-data .section select{max-width:100%;}
+}
+/*=====================================================
+    
+    SMALLER MOBILE DEVICES
+
+=====================================================*/
+@media screen and (max-width:480px){
+
+}

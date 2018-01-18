@@ -1,0 +1,32 @@
+﻿<div class="header">
+    @Html.Widget("header")
+    <div class="header-links-wrapper">
+        @Html.Action("HeaderLinks", "Common")
+        @Html.Action("FlyoutShoppingCart", "ShoppingCart")
+    </div>
+	
+	<div class="clear">
+	</div>
+	
+	<div class="header-logo">
+        <a href="@Url.RouteUrl("HomePage")" class="logo">&nbsp; </a>
+    </div>
+
+	<div class="social">
+		
+			<div class="contact">
+				Contact Us!<br /><h3>1-234-567-0000</h3>
+			</div>
+			
+			<div class="social_item">
+			<ul>
+				<li>follow us!</li>
+				<li><a href="#"><img src="@Url.Content("~/Themes/00044/Content/images/icon_fb.png")"/></a></li>
+				<li><a href="#"><img src="@Url.Content("~/Themes/00044/Content/images/icon_g.png")"/></a></li>
+				<li><a href="#"><img src="@Url.Content("~/Themes/00044/Content/images/icon_twitter.png")"/></a></li>
+			</ul>
+			</div>
+			
+	</div>
+	
+</div>

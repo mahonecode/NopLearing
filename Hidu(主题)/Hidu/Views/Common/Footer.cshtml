@@ -1,0 +1,96 @@
+﻿@model FooterModel
+@using Nop.Core
+@using Nop.Core.Domain.Tax
+@using Nop.Core.Infrastructure
+@using Nop.Web.Extensions
+@using Nop.Web.Models.Common;
+<div class="footer">
+    <div class="centerFooters">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="info-block">
+                        <div class="footer-upper">
+                            <div class="fl byFooters">
+                                <h3 class="title_ct">Thông tin</h3>
+                                <ul class="footer-menu">
+                                    <li><a rel="nofollow" href="@Url.RouteUrl("Topic", new { SeName = Html.GetTopicSeName("thanh-toan") })">Thanh toán</a></li>
+                                    <li><a rel="nofollow" href="@Url.RouteUrl("Topic", new { SeName = Html.GetTopicSeName("gioi-thieu") })">Giới thiệu</a></li>
+                                    <li><a rel="nofollow" href="/newproducts">Sản phẩm</a></li>
+                                    <li><a rel="nofollow" href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="fl byFooters">
+                        <h3 class="title_ct">Tài khoản của tôi</h3>
+                        <ul class="footer-menu">
+                            <li><a rel="nofollow" href="@Url.RouteUrl("CustomerInfo")" class="account">@T("Account.MyAccount")</a></li>
+                            @if (!Model.HideOrders)
+                            {
+                                <li><a rel="nofollow" href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
+                            }
+                            @if (Model.ShoppingCartEnabled)
+                            {
+                                <li><a rel="nofollow" href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">@T("ShoppingCart")</a></li>
+                            }
+                            @if (Model.WishlistEnabled)
+                            {
+                                <li><a rel="nofollow" href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">@T("Wishlist")</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="fl byFooters">
+                        <h3 class="title_ct">
+                            Sản phẩm
+                        </h3>
+                        <ul class="footer-menu">
+
+                            @if (Model.RecentlyViewedProductsEnabled)
+                            {
+                                <li><a rel="nofollow" href="@Url.RouteUrl("RecentlyViewedProducts")">@T("Products.RecentlyViewedProducts")</a></li>
+                            }
+                            @if (Model.CompareProductsEnabled)
+                            {
+                                <li><a rel="nofollow" href="@Url.RouteUrl("CompareProducts")">@T("Products.Compare.List")</a></li>
+                            }
+                            <li><a rel="nofollow" href="@Url.RouteUrl("ProductSearch")">@T("Search")</a> </li>
+                            @if (Model.NewsEnabled)
+                            {
+                                <li><a rel="nofollow" href="@Url.RouteUrl("NewsArchive")">@T("News")</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div class="footbox-social">
+                        <h3 class="title_ct">
+                            Tìm chúng tôi
+                        </h3>
+                        <ul>
+                            <li>
+                                <a rel="nofollow" href="@Model.FacebookLink" target="_blank" class="facebook" target="_blank"></a>
+                            </li>
+                            <li><a rel="nofollow" href="@Model.TwitterLink" class="twitter" target="_blank"></a></li>
+                            <li><a rel="nofollow" href="@Model.GooglePlusLink" class="google-plus" target="_blank"></a></li>
+                            <li><a rel="nofollow" href="@Model.YoutubeLink" class="youtube" target="_blank"></a></li>
+                            <li><a rel="nofollow" class="rss" href="/blog/rss/1" target="_blank"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="topic-footer">
+                @Html.Action("TopicBlock", "Topic", new { systemName = "FooterAddress" })
+            </div>
+            <div class="clear"></div>
+            <div class="footer-disclaimer">
+                <span>@T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)</span>
+            </div>
+        </div>
+    </div>
+</div>
